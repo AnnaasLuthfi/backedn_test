@@ -1,0 +1,30 @@
+CREATE SCHEMA backend_test
+
+CREATE TABLE Nationallity(
+		nationallity_id INT NOT NULL,
+		nationallity_name VARCHAR(50) NOT NULL,
+		nationallity_code CHAR(2) NOT NULL,
+		PRIMARY KEY (nationallity_id)
+	)
+
+	CREATE TABLE customer(
+		cst_id INT NOT NULL,
+		nationallity_id INT NOT NULL,
+		cst_name CHAR(50) NOT NULL,
+		cst_dob DATE NOT NULL,
+		cst_phoneNum VARCHAR(20) NOT NULL,
+		cst_email VARCHAR(50) NOT NULL,
+		PRIMARY KEY (cst_id),
+		FOREIGN KEY (nationallity_id) REFERENCES Nationallity(nationallity_id) ON DELETE CASCADE
+	)
+	
+	CREATE TABLE family_list(
+		fl_id INT NOT NULL,
+		cst_id VARCHAR(50) NOT NULL,
+		fl_relation VARCHAR(50) NOT NULL,
+		fl_name VARCHAR(50) NOT NULL,
+		fl_dob VARCHAR(50) NOT NULL,
+		PRIMARY KEY (fl_id),
+		FOREIGN KEY (cst_id) REFERENCES customer(cst_id) ON DELETE CASCADE
+	)
+	
